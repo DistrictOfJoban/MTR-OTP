@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "mtrotp",
+  "version": "${version}",
+
+  "name": "MTR-OTP",
+  "description": "Experimental client-side optimization for the Minecraft Transit Railway Mod",
+  "authors": [
+    "LX86"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/DistrictOfJoban/MTR-OTP"
+  },
+
+  "license": "MIT",
+  "icon": "assets/mtrotp/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.lx.mtrotp.MTROTP"
+    ]
+  },
+  "mixins": [
+    "mtrotp.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.9",
+    "fabric": "*",
+    "minecraft": "${mc_version}",
+    "mtr": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
