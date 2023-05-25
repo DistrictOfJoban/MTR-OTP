@@ -1,7 +1,7 @@
 package com.lx.mtrotp.mixin;
 
 import mtr.data.Rail;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(value = Rail.class, remap = false)
 public interface RailAccessorMixin {
     @Invoker("getPositionXZ")
-    static Vec3d positionXZ(double h, double k, double r, double t, double radiusOffset, boolean isStraight) {
+    static Vec3 positionXZ(double h, double k, double r, double t, double radiusOffset, boolean isStraight) {
         return null;
     }
     @Invoker("getPositionY")

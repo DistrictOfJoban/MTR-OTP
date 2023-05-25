@@ -4,9 +4,9 @@ import com.lx.mtrotp.Util;
 import com.lx.mtrotp.config.Config;
 import mtr.data.TrainClient;
 import mtr.render.JonModelTrainRenderer;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.Frustum;
-import net.minecraft.util.math.Box;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,8 +32,8 @@ public class JonModelTrainRendererMixin {
 
     private boolean canBeCulled(int carIndex) {
         if(!Config.cullTrain) return false;
-        Box boundingBox = Util.getTrainBoundingBox(train, carIndex, train.spacing);
-        Frustum frustum = ((WorldRendererAccessor) MinecraftClient.getInstance().worldRenderer).getFrustum();
+        AABB boundingBox = Util.getTrainBoundingBox(train, carIndex, train.spacing);
+        Frustum frustum = ((WorldRendererAccessor) Minecraft.getInstance().levelRenderer).getCullingFrustum();
 
         return !frustum.isVisible(boundingBox);
     }

@@ -1,5 +1,5 @@
 # MTR-OTP
-Currently supports 1.19.2 - 1.19.3
+Currently supports 1.19.2 - 1.19.4
 
 ## Config
 The config file are automatically generated in `config/mtrotp.json` once the client starts up.

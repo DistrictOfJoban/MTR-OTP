@@ -1,13 +1,8 @@
 package com.lx.mtrotp.mixin;
 
 import com.lx.mtrotp.config.Config;
-import mtr.mappings.WidgetMapper;
+import com.mojang.blaze3d.vertex.*;
 import mtr.screen.WidgetMap;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,14 +23,14 @@ public abstract class WidgetMapMixin {
 
     @Shadow private int height;
 
-    @Inject(method = "Lmtr/screen/WidgetMap;render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V", at = @At("HEAD"))
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    @Inject(method = "render", at = @At("HEAD"))
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if(Config.dashboardLazyRender) {
             drawBlackBackground();
         }
     }
 
-    @Inject(method = "Lmtr/screen/WidgetMap;drawRectangleFromWorldCoords(Lnet/minecraft/client/render/BufferBuilder;DDDDI)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "Lmtr/screen/WidgetMap;drawRectangleFromWorldCoords(Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDI)V", at = @At("HEAD"), cancellable = true)
     public void drawRectFromWorldCoords(BufferBuilder buffer, double posX1, double posZ1, double posX2, double posZ2, int color, CallbackInfo ci) {
         if(Config.dashboardLazyRender && color == ARGB_BLACK) {
             ci.cancel();
@@ -43,10 +38,10 @@ public abstract class WidgetMapMixin {
     }
 
     private void drawBlackBackground() {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferBuilder = tessellator.getBuffer();
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+        Tesselator tessellator = Tesselator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuilder();
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         drawRectangle(bufferBuilder, 0, 0, width, height, ARGB_BLACK);
-        tessellator.draw();
+        tessellator.end();
     }
 }
