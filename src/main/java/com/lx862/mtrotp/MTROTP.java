@@ -1,6 +1,6 @@
-package com.lx.mtrotp;
+package com.lx862.mtrotp;
 
-import com.lx.mtrotp.config.Config;
+import com.lx862.mtrotp.config.Config;
 import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

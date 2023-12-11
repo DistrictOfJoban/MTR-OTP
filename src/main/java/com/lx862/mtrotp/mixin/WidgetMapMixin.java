@@ -1,6 +1,6 @@
-package com.lx.mtrotp.mixin;
+package com.lx862.mtrotp.mixin;
 
-import com.lx.mtrotp.config.Config;
+import com.lx862.mtrotp.config.Config;
 import com.mojang.blaze3d.vertex.*;
 import mtr.screen.WidgetMap;
 import org.spongepowered.asm.mixin.Mixin;

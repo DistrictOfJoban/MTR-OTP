@@ -1,4 +1,4 @@
-package com.lx.mtrotp.mixin;
+package com.lx862.mtrotp.mixin;
 
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.culling.Frustum;

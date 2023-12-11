@@ -1,7 +1,7 @@
-package com.lx.mtrotp.mixin;
+package com.lx862.mtrotp.mixin;
 
-import com.lx.mtrotp.Util;
-import com.lx.mtrotp.config.Config;
+import com.lx862.mtrotp.Util;
+import com.lx862.mtrotp.config.Config;
 import mtr.data.TrainClient;
 import mtr.render.JonModelTrainRenderer;
 import net.minecraft.client.Minecraft;

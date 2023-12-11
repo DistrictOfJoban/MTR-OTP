@@ -1,7 +1,7 @@
-package com.lx.mtrotp;
+package com.lx862.mtrotp;
 
-import com.lx.mtrotp.mixin.RailAccessorMixin;
-import com.lx.mtrotp.mixin.TrainAccessorMixin;
+import com.lx862.mtrotp.mixin.RailAccessorMixin;
+import com.lx862.mtrotp.mixin.TrainAccessorMixin;
 import mtr.data.Rail;
 import mtr.data.Train;
 import net.minecraft.util.Mth;

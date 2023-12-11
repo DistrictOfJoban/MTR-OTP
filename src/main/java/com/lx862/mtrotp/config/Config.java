@@ -1,7 +1,7 @@
-package com.lx.mtrotp.config;
+package com.lx862.mtrotp.config;
 
 import com.google.gson.*;
-import com.lx.mtrotp.MTROTP;
+import com.lx862.mtrotp.MTROTP;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Files;

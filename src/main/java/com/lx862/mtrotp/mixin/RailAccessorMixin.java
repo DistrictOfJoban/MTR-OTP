@@ -1,4 +1,4 @@
-package com.lx.mtrotp.mixin;
+package com.lx862.mtrotp.mixin;
 
 import mtr.data.Rail;
 import net.minecraft.world.phys.Vec3;

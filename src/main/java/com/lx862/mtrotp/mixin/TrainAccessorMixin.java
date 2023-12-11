@@ -1,4 +1,4 @@
-package com.lx.mtrotp.mixin;
+package com.lx862.mtrotp.mixin;
 
 import mtr.data.Train;
 import org.spongepowered.asm.mixin.Mixin;
