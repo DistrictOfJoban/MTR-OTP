@@ -1,7 +1,7 @@
 package com.lx862.mtrotp.mixin;
 
 import com.lx862.mtrotp.Util;
-import com.lx862.mtrotp.config.Config;
+import com.lx862.mtrotp.config.ClientConfig;
 import mtr.data.TrainClient;
 import mtr.render.JonModelTrainRenderer;
 import net.minecraft.client.Minecraft;
@@ -31,7 +31,7 @@ public class JonModelTrainRendererMixin {
     }
 
     private boolean canBeCulled(int carIndex) {
-        if(!Config.cullTrain) return false;
+        if(!ClientConfig.cullTrain) return false;
         AABB boundingBox = Util.getTrainBoundingBox(train, carIndex, train.spacing);
         Frustum frustum = ((WorldRendererAccessor) Minecraft.getInstance().levelRenderer).getCullingFrustum();
 

@@ -2,6 +2,7 @@ package com.lx862.mtrotp.config;
 
 import com.google.gson.*;
 import com.lx862.mtrotp.MTROTP;
+import com.lx862.mtrotp.MTROTPClient;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Files;
@@ -9,19 +10,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 
-public class Config {
+public class ClientConfig {
     private static final Path CONFIG_PATH = Paths.get(FabricLoader.getInstance().getConfigDir().toString(), "mtrotp.json");
     public static boolean cullTrain = true;
     public static boolean dashboardLazyRender = true;
 
     public static void load() {
         if(!Files.exists(CONFIG_PATH)) {
-            MTROTP.LOGGER.info("[MTR-OTP] Config not found, generating one...");
+            MTROTPClient.LOGGER.info("[MTR-OTP] Config not found, generating one...");
             writeConfig();
             return;
         }
 
-        MTROTP.LOGGER.info("[MTR-OTP] Reading config...");
+        MTROTPClient.LOGGER.info("[MTR-OTP] Reading config...");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_PATH))).getAsJsonObject();
             try {
@@ -38,7 +39,7 @@ public class Config {
     }
 
     public static void writeConfig() {
-        MTROTP.LOGGER.info("[MTR-OTP] Writing Config...");
+        MTROTPClient.LOGGER.info("[MTR-OTP] Writing Config...");
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty("cullTrain", cullTrain);
         jsonConfig.addProperty("dashboardLazyRender", dashboardLazyRender);

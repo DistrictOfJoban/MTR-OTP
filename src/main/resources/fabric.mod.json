@@ -18,8 +18,11 @@
 
   "environment": "*",
   "entrypoints": {
-    "client": [
+    "main": [
       "com.lx862.mtrotp.MTROTP"
+    ],
+    "client": [
+      "com.lx862.mtrotp.MTROTPClient"
     ]
   },
   "mixins": [
