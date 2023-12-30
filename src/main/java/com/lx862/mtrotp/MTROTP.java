@@ -22,6 +22,15 @@ public class MTROTP implements ModInitializer {
     }
 
     public static float getNextTickTime() {
-        return Math.max(1F, ((lastTickTime - last2TickTime) / 50F));
+        if(lastTickTime == -1 || last2TickTime == -1) return 1;
+
+        float result = (lastTickTime - last2TickTime) / 50F;
+        // 30 second has elapsed, seriously?
+        if(result >= 20 * 30) {
+            LOGGER.warn("[MTR-OTP] More than 30s has elapsed since last tick, too much to skip!");
+            return 1;
+        }
+
+        return Math.max(1F, result);
     }
 }
