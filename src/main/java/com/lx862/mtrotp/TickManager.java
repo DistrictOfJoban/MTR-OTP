@@ -43,6 +43,6 @@ public class TickManager {
     }
 
     public static float getNextTickTime() {
-        return Math.max(1F, tickTime);
+        return Math.max(1F, (int)tickTime);
     }
 }
