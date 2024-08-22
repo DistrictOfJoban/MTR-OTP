@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
 public class TickManager {
-    private static final int MAX_TICK_TIME = (20 * 60) * 2;
     private static long last2TickTime = -1;
     private static long lastTickTime = -1;
     private static float tickTime = -1;
@@ -34,15 +33,10 @@ public class TickManager {
             last2TickTime = lastTickTime;
             lastTickTime = System.currentTimeMillis();
             tickTime = (lastTickTime - last2TickTime) / 50F;
-
-            if(tickTime > MAX_TICK_TIME) {
-                MTROTP.LOGGER.warn("[MTR-OTP] More than 2 min has elapsed since last tick, too much to skip!");
-                tickTime = 1;
-            }
         });
     }
 
     public static float getNextTickTime() {
-        return Math.max(1F, (int)tickTime);
+        return tickTime;
     }
 }
