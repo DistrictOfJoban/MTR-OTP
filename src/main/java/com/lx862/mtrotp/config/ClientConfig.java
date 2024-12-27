@@ -1,7 +1,6 @@
 package com.lx862.mtrotp.config;
 
 import com.google.gson.*;
-import com.lx862.mtrotp.MTROTP;
 import com.lx862.mtrotp.MTROTPClient;
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -17,12 +16,12 @@ public class ClientConfig {
 
     public static void load() {
         if(!Files.exists(CONFIG_PATH)) {
-            MTROTPClient.LOGGER.info("[MTR-OTP] Config not found, generating one...");
+            MTROTPClient.LOGGER.info("[MTR-OTP] Client config not found, generating one...");
             writeConfig();
             return;
         }
 
-        MTROTPClient.LOGGER.info("[MTR-OTP] Reading config...");
+        MTROTPClient.LOGGER.info("[MTR-OTP] Reading client config...");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_PATH))).getAsJsonObject();
             try {
@@ -39,7 +38,7 @@ public class ClientConfig {
     }
 
     public static void writeConfig() {
-        MTROTPClient.LOGGER.info("[MTR-OTP] Writing Config...");
+        MTROTPClient.LOGGER.info("[MTR-OTP] Writing client config...");
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty("cullTrain", cullTrain);
         jsonConfig.addProperty("dashboardLazyRender", dashboardLazyRender);

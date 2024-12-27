@@ -11,12 +11,18 @@ Currently supports 1.19.2 - 1.19.4
 - Use elapsed time to ensure server train runs at a consistent rate regardless of TPS.
 
 ## Config
-The config file are automatically generated in `config/mtrotp.json` once the client starts up.
+The client config file are automatically generated in `config/mtrotp.json` once the client starts up.
 
 | Config Key          | Default Value | Description                                                                                        | Effect   |
 |---------------------|---------------|----------------------------------------------------------------------------------------------------|----------|
 | cullTrain           | true          | Use frustum culling to skip rendering train cars that are outside of camera bounds to improve FPS. | Varies   |
 | dashboardLazyRender | true          | Optimize the dashboard world map to improve FPS.                                                   | Varies   |
+
+The server config file are automatically generated in `config/mtrotp_server.json` once the server starts up.
+
+| Config Key          | Default Value | Description                                                                                   | Effect |
+|---------------------|---------------|-----------------------------------------------------------------------------------------------|--------|
+| trainUpdateDistance | 128           | This removes the hardcoded 128 blocks radius train update in MTR, allowing for customization. | N/A    |
 
 ## Bugs/Suggestions
 You may open an GitHub issue [here](https://github.com/DistrictOfJoban/MTR-OTP/issues)
