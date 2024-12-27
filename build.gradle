@@ -1,6 +1,6 @@
 import groovy.json.JsonSlurper
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 	id "de.undercouch.download" version "4.1.2"
 }
@@ -10,14 +10,14 @@ targetCompatibility = JavaVersion.VERSION_17
 
 group = project.maven_group
 
-def default_minecraft_version = "1.19.2"
+def default_minecraft_version = "1.19.4"
 def minecraft_version = project.properties.containsKey("buildVersion") ? project.getProperties().get("buildVersion") : default_minecraft_version
 def minecraft_major_version = minecraft_version.split("\\.")[0] as int // Always return 1, unless mojang goes haywire :P
 def minecraft_main_version = minecraft_version.split("\\.")[1] as int
 def minecraft_minor_version = minecraft_version.split("\\.").size() > 2 ? minecraft_version.split("\\.")[2] as int : 0
 def minecraft_version_str = (minecraft_major_version as String) + (minecraft_main_version as String).padLeft(2, '0') + (minecraft_minor_version as String).padLeft(2, '0')
 def use_absolute_version = (minecraft_version_str as int) >= 11903
-def mc_requirement = use_absolute_version ? default_minecraft_version : "${minecraft_major_version}.${minecraft_main_version}.x"
+def mc_requirement = use_absolute_version ? minecraft_version : "${minecraft_major_version}.${minecraft_main_version}.x"
 
 //def yarn_mappings = new JsonSlurper().parse(("https://meta.fabricmc.net/v2/versions/yarn/" + minecraft_version).toURL())[0]["version"]
 def loader_version = project.loader_version

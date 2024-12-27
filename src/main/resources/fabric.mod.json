@@ -30,12 +30,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.9",
     "fabric": "*",
     "minecraft": "${mc_version}",
     "mtr": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
