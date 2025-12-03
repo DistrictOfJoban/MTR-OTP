@@ -2,7 +2,7 @@
 MTR-OTP is a mod that attempts to fixes/patch some known issues for the last version of [Minecraft Transit Railway 3.0](https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway) to improve the playing experience.  
 
 This is a temporary solution to provide a better playing experiences before the next version of MTR is released.  
-Currently supports 1.19.2 - 1.19.4
+Currently supports 1.19.4
 
 ## Features
 - Attempt to use Frustum Culling to increase frame rates by skipping train rendering, may cause train flickering. (Client)
