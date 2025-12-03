@@ -1,6 +1,7 @@
 package com.lx862.mtrotp.mixin;
 
 import mtr.data.Train;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -16,4 +17,10 @@ public interface TrainAccessorMixin {
 
     @Invoker("getModelZOffset")
     float modelZOffset();
+
+    @Invoker("getRoutePosition")
+    Vec3 routePosition(int car, int trainSpacing);
+
+    @Accessor
+    boolean getReversed();
 }

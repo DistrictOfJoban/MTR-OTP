@@ -8,6 +8,7 @@
     "TrainServerMixin"
   ],
   "client": [
+    "TrainClientMixin",
     "JonModelTrainRendererMixin",
     "RailAccessorMixin",
     "TrainAccessorMixin",
