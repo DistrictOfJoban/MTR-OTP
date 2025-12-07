@@ -10,13 +10,15 @@ import net.minecraft.world.phys.Vec3;
 
 public class Util {
     private static final int MAX_Y = 384;
+    private static final double CULLING_MARGIN = 1;
 
     public static AABB getTrainBoundingBox(Train train, int car, int trainSpacing) {
+        final double newTrainSpacing = trainSpacing + CULLING_MARGIN;
         final double halfWidth = train.width / 2.0;
-        Vec3 a1 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, trainSpacing, halfWidth);
-        Vec3 a2 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, trainSpacing, -halfWidth);
-        Vec3 a3 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, trainSpacing, -halfWidth);
-        Vec3 a4 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, trainSpacing, halfWidth);
+        Vec3 a1 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, newTrainSpacing, halfWidth);
+        Vec3 a2 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, newTrainSpacing, -halfWidth);
+        Vec3 a3 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, newTrainSpacing, -halfWidth);
+        Vec3 a4 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, newTrainSpacing, halfWidth);
         AABB box1 = new AABB(a1.x, Math.min(a1.y, a2.y), a1.z, a2.x, MAX_Y, a2.z);
         AABB box2 = new AABB(a3.x, Math.min(a3.y, a4.y), a3.z, a4.x, MAX_Y, a4.z);
         return box1.minmax(box2);
@@ -54,14 +56,14 @@ public class Util {
         }
     }
 
-    private static Vec3 getRoutePosition(Train train, int car, int trainSpacing, double radiusOffset) {
+    private static Vec3 getRoutePosition(Train train, int car, double trainSpacing, double radiusOffset) {
         final double tempRailProgress = Math.max(getRailProgress(train, car, trainSpacing) - ((TrainAccessorMixin)train).modelZOffset(), 0);
         final int index = train.getIndex(tempRailProgress, false);
         final Rail rail = train.path.get(index).rail;
         return getRailPosition(rail, tempRailProgress - (index == 0 ? 0 : ((TrainAccessorMixin)train).getDistances().get(index - 1)), radiusOffset).add(0, train.transportMode.railOffset, 0);
     }
 
-    private static double getRailProgress(Train train, int car, int trainSpacing) {
+    private static double getRailProgress(Train train, int car, double trainSpacing) {
         return train.getRailProgress() - car * trainSpacing;
     }
 }
