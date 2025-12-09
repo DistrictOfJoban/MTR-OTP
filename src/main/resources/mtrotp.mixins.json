@@ -4,14 +4,15 @@
   "package": "com.lx862.mtrotp.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LiftMixin",
     "SidingMixin",
     "TrainServerMixin"
   ],
   "client": [
-    "TrainClientMixin",
     "JonModelTrainRendererMixin",
     "RailAccessorMixin",
     "TrainAccessorMixin",
+    "TrainClientMixin",
     "WidgetMapMixin",
     "WorldRendererAccessor"
   ],
