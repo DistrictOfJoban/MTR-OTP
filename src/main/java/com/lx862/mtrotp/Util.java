@@ -10,18 +10,17 @@ import net.minecraft.world.phys.Vec3;
 
 public class Util {
     private static final int MAX_Y = 384;
-    private static final double CULLING_MARGIN = 1;
+    private static final double CULLING_MARGIN = 2;
 
     public static AABB getTrainBoundingBox(Train train, int car, int trainSpacing) {
-        final double newTrainSpacing = trainSpacing + CULLING_MARGIN;
         final double halfWidth = train.width / 2.0;
-        Vec3 a1 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, newTrainSpacing, halfWidth);
-        Vec3 a2 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, newTrainSpacing, -halfWidth);
-        Vec3 a3 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, newTrainSpacing, -halfWidth);
-        Vec3 a4 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, newTrainSpacing, halfWidth);
+        Vec3 a1 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, trainSpacing, halfWidth);
+        Vec3 a2 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, trainSpacing, -halfWidth);
+        Vec3 a3 = getRoutePosition(train, train.isReversed() ? train.trainCars - car : car, trainSpacing, -halfWidth);
+        Vec3 a4 = getRoutePosition(train, train.isReversed() ? (train.trainCars - car) - 1 : car + 1, trainSpacing, halfWidth);
         AABB box1 = new AABB(a1.x, Math.min(a1.y, a2.y), a1.z, a2.x, MAX_Y, a2.z);
         AABB box2 = new AABB(a3.x, Math.min(a3.y, a4.y), a3.z, a4.x, MAX_Y, a4.z);
-        return box1.minmax(box2);
+        return box1.minmax(box2).inflate(CULLING_MARGIN);
     }
 
     // All these methods are simply copied from MTR with a radiusOffset, so we know the actual bounding box area
